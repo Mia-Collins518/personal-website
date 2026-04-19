@@ -1,7 +1,9 @@
 ---
-import Layout from "@/layouts/BaseLayout.astro";
-import Window from '../components/Window.astro';
- 
+// This starts from the root of your project, no matter how deep the file is
+import Layout from "/src/layouts/BaseLayout.astro";
+import Window from "/src/components/Window.astro";
+---
+
 // When you add real project .md files, import them here with getCollection()
 const projects = [
   {
