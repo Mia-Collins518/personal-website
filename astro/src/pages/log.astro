@@ -5,10 +5,20 @@ import Window from '../components/Window.astro';
 // Add new log entries here — newest first
 const entries = [
   {
+    date: 'apr 19 2026',
+    title: 'commit 2-6: the site exists (publically!)',
+    body: 'Okay so it took a second to figure out the Vercel deployment. I had an issue with the Git because I initally launched Astro with the root folder as /astro
+    but I wanted the git to be in the top level directory. Then I had some issues with the relative paths in my project and writing folders that was causing Vercel to
+    fail deployment, but with some help from Gemini I was able to figure it out. Now the website is live! And it is past my bedtime. ',
+    tags: ['astro', 'vibe-coding', 'design', 'Gemini'],
+  },
+  {
     date: 'apr 18 2026',
-    title: 'commit 1: the site exists',
-    body: 'Built the homepage tonight with Claude. Chose Astro over Next.js because it\'s better for content-heavy sites. The aesthetic is retro OS × pastel space — windows, monospace fonts, twinkling stars. Turner has 5,922 commits. I have 1. Starting somewhere.',
-    tags: ['astro', 'vibe-coding', 'design'],
+    title: 'commit 1: the site exists (locally)',
+    body: 'Built the homepage tonight with Claude. Chose Astro over Next.js because Claude recommended it for the content that I wanted to host on this site. 
+    The aesthetic is retro user interface × space with cute pastel colors, stars, and some flowers. This site is in part inspired by Alex Turner's turntrout.com, he has 5,922 commits 
+    and a beautiful site. I have 1 and a lot of work to do, but I am starting somewhere.',
+    tags: ['astro', 'vibe-coding', 'design', 'Claude'],
   },
 ];
 ---
