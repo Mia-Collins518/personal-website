@@ -1,0 +1,145 @@
+---
+import '../styles/global.css';
+ 
+interface Props {
+  title?: string;
+  description?: string;
+}
+ 
+const { title = 'Mia Collins', description = 'CS student · AI/ML · safety & alignment' } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title === 'Mia Collins' ? title : `${title} — Mia Collins`}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <!-- Starfield (always visible, brightness shifts with theme) -->
+  <div class="starfield" id="starfield" aria-hidden="true"></div>
+ 
+  <!-- Floating planets -->
+  <div class="planet" id="planet-main"
+    style="width:90px;height:90px;top:-18px;right:80px;opacity:0.55;"
+    aria-hidden="true"></div>
+  <div class="planet" id="planet-small"
+    style="width:22px;height:22px;top:18px;right:190px;opacity:0.6;"
+    aria-hidden="true"></div>
+ 
+  <div class="site-content">
+    <!-- Taskbar / Nav -->
+    <nav class="taskbar" aria-label="Main navigation">
+      <a href="/" class="taskbar-logo">✦ miacollins.dev</a>
+ 
+      <div class="taskbar-nav">
+        <a href="/about"    class={`nav-link ${currentPath.startsWith('/about')    ? 'active' : ''}`}>~/about</a>
+        <a href="/projects" class={`nav-link ${currentPath.startsWith('/projects') ? 'active' : ''}`}>~/projects</a>
+        <a href="/writing"  class={`nav-link ${currentPath.startsWith('/writing')  ? 'active' : ''}`}>~/writing</a>
+        <a href="/research" class={`nav-link ${currentPath.startsWith('/research') ? 'active' : ''}`}>~/research</a>
+        <a href="/log"      class={`nav-link ${currentPath.startsWith('/log')      ? 'active' : ''}`}>~/log</a>
+        <a href="/contact"  class={`nav-link ${currentPath.startsWith('/contact')  ? 'active' : ''}`}>~/contact</a>
+      </div>
+ 
+      <span class="taskbar-clock" id="clock" aria-live="off">00:00:00</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">☾ dark</button>
+    </nav>
+ 
+    <main>
+      <slot />
+    </main>
+ 
+    <footer class="site-footer">
+      <span class="footer-text">🌸 made with curiosity + claude 🌸</span>
+      <span class="footer-text">columbia cs · ai safety</span>
+    </footer>
+  </div>
+ 
+  <script>
+    // ── Theme ──
+    const THEME_KEY = 'mia-theme';
+    const root = document.documentElement.querySelector('body') as HTMLElement;
+    const toggleBtn = document.getElementById('theme-toggle')!;
+ 
+    function applyTheme(dark: boolean) {
+      if (dark) {
+        document.body.setAttribute('data-theme', 'dark');
+        toggleBtn.textContent = '☀ light';
+      } else {
+        document.body.removeAttribute('data-theme');
+        toggleBtn.textContent = '☾ dark';
+      }
+      buildStars(dark);
+      buildPlanets(dark);
+    }
+ 
+    let isDark = localStorage.getItem(THEME_KEY) === 'dark';
+    applyTheme(isDark);
+ 
+    toggleBtn.addEventListener('click', () => {
+      isDark = !isDark;
+      localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
+      applyTheme(isDark);
+    });
+ 
+    // ── Starfield ──
+    function buildStars(dark: boolean) {
+      const sf = document.getElementById('starfield')!;
+      sf.innerHTML = '';
+      // same 130 stars always — just colour changes
+      const cols = dark
+        ? ['#e0c8ff', '#f4d8ff', '#c0a0f8', '#ffffff']
+        : ['#c8a0d8', '#e0b8f0', '#b888cc', '#d8c0e8'];
+      for (let i = 0; i < 130; i++) {
+        const s   = document.createElement('div');
+        const sz  = (Math.random() * 2.5 + 0.8).toFixed(2);
+        const dur = (Math.random() * 3 + 1.5).toFixed(2);
+        const del = (Math.random() * 4).toFixed(2);
+        const c   = cols[Math.floor(Math.random() * cols.length)];
+        s.style.cssText = [
+          'position:absolute',
+          `width:${sz}px`, `height:${sz}px`,
+          'border-radius:50%',
+          `background:${c}`,
+          `top:${(Math.random() * 98).toFixed(1)}%`,
+          `left:${(Math.random() * 98).toFixed(1)}%`,
+          `animation:twinkle ${dur}s ease-in-out ${del}s infinite`,
+        ].join(';');
+        sf.appendChild(s);
+      }
+    }
+ 
+    // ── Planets ──
+    function buildPlanets(dark: boolean) {
+      const p1 = document.getElementById('planet-main')!;
+      const p2 = document.getElementById('planet-small')!;
+      if (dark) {
+        p1.style.background   = 'radial-gradient(circle at 35% 35%, #5a2080, #0a0514)';
+        p1.style.boxShadow    = 'inset -6px -8px 18px rgba(0,0,0,0.7), 0 0 30px rgba(140,60,200,0.25)';
+        p2.style.background   = 'radial-gradient(circle at 40% 40%, #c090f0, #7038c0)';
+        p2.style.boxShadow    = '0 0 8px rgba(160,80,240,0.4)';
+      } else {
+        p1.style.background   = 'radial-gradient(circle at 35% 35%, #e8b0e0, #c080d0)';
+        p1.style.boxShadow    = 'inset -6px -8px 18px rgba(160,60,200,0.3), 0 0 20px rgba(200,120,220,0.2)';
+        p2.style.background   = 'radial-gradient(circle at 40% 40%, #f0c8f8, #d090e8)';
+        p2.style.boxShadow    = '0 0 6px rgba(200,120,240,0.3)';
+      }
+    }
+ 
+    // ── Clock ──
+    function tick() {
+      const n   = new Date();
+      const pad = (v: number) => String(v).padStart(2, '0');
+      const el  = document.getElementById('clock');
+      if (el) el.textContent = `${pad(n.getHours())}:${pad(n.getMinutes())}:${pad(n.getSeconds())}`;
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
+ 

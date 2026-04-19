@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Window from '../components/Window.astro';
+ 
+// Add new log entries here — newest first
+const entries = [
+  {
+    date: 'apr 18 2026',
+    title: 'commit 1: the site exists',
+    body: 'Built the homepage tonight with Claude. Chose Astro over Next.js because it\'s better for content-heavy sites. The aesthetic is retro OS × pastel space — windows, monospace fonts, twinkling stars. Turner has 5,922 commits. I have 1. Starting somewhere.',
+    tags: ['astro', 'vibe-coding', 'design'],
+  },
+];
+---
+ 
+<BaseLayout title="Process Log" description="Mia's build log — documenting the process, not just the product">
+  <div style="padding: 20px 18px;">
+    <Window title="process.log ✦">
+      <p class="section-label">► build log — documenting the process, not just the product</p>
+ 
+      {entries.map((e) => (
+        <div class="log-entry">
+          <div class="log-header">
+            <span class="log-date">{e.date}</span>
+            <div class="log-tags">
+              {e.tags.map(t => <span class="tag">#{t}</span>)}
+            </div>
+          </div>
+          <h2 class="log-title">{e.title}</h2>
+          <p class="log-body">{e.body}</p>
+        </div>
+      ))}
+ 
+      {entries.length === 0 && (
+        <div class="terminal" style="margin-top: 8px;">
+          <div class="term-line"><span class="term-comment"># nothing here yet — check back soon ✿</span></div>
+          <div class="term-line"><span class="term-prompt">status</span> = <span class="term-value">"starting soon"</span> <span class="term-cursor"></span></div>
+        </div>
+      )}
+    </Window>
+  </div>
+</BaseLayout>
+ 
+<style>
+.log-entry {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--bg2);
+}
+.log-entry:last-child { border-bottom: none; }
+ 
+.log-header {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 8px; margin-bottom: 4px;
+}
+.log-date  { font-family: 'VT323', monospace; font-size: 13px; color: var(--txt4); }
+.log-tags  { display: flex; gap: 4px; flex-wrap: wrap; }
+ 
+.log-title {
+  font-family: 'VT323', monospace; font-size: 22px;
+  color: var(--txt1); margin-bottom: 6px;
+}
+.log-body {
+  font-family: 'Crimson Pro', serif;
+  font-size: 16px; color: var(--txt2); line-height: 1.6;
+}
+</style>

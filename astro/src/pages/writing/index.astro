@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Window from '../components/Window.astro';
+ 
+const pieces = [
+  {
+    slug: 'constitutional-ai',
+    title: 'On Constitutional AI and Scalable Oversight',
+    type: 'research paper',
+    date: '2025',
+    status: 'published',
+    summary: 'An analysis of Anthropic\'s Constitutional AI framework and its implications for scalable oversight of large language models.',
+  },
+  {
+    slug: 'ai-deception',
+    title: 'Deception in Agentic AI Systems',
+    type: 'research paper',
+    date: 'spring 2026',
+    status: 'in progress',
+    summary: 'Examining opportunistic deception behaviors in agentic AI, inspired by findings in the June 2025 Agentic AI paper.',
+  },
+  {
+    slug: 'ecopulse-reflections',
+    title: 'What EcoPulse taught me about ML deployment',
+    type: 'project reflection',
+    date: '2024',
+    status: 'published',
+    summary: 'Lessons from building and deploying a full-stack ML app — including the training-serving skew problem I still think about.',
+  },
+];
+---
+ 
+<BaseLayout title="Writing" description="Essays, papers, and reflections by Mia Collins">
+  <div style="padding: 20px 18px;">
+    <Window title="writing/ ♡">
+      <p class="section-label">► essays &amp; papers</p>
+ 
+      {pieces.map((p) => (
+        <a href={`/writing/${p.slug}`} class="write-card">
+          <div class="write-header">
+            <span class="write-type">{p.type}</span>
+            <span class="write-date">{p.date}</span>
+          </div>
+          <p class="write-title">{p.title}</p>
+          <p class="write-summary">{p.summary}</p>
+          {p.status === 'in progress' && <span class="wip-badge">in progress ✿</span>}
+        </a>
+      ))}
+    </Window>
+  </div>
+</BaseLayout>
+ 
+<style>
+.write-card {
+  display: block;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--bg2);
+  text-decoration: none;
+  transition: padding-left 0.15s;
+}
+.write-card:last-child { border-bottom: none; }
+.write-card:hover { padding-left: 6px; }
+.write-card:hover .write-title { color: var(--accent2); }
+ 
+.write-header {
+  display: flex; justify-content: space-between;
+  margin-bottom: 4px;
+}
+.write-type { font-family: 'VT323', monospace; font-size: 12px; color: var(--txt3); letter-spacing: 1px; }
+.write-date { font-family: 'VT323', monospace; font-size: 12px; color: var(--txt4); }
+ 
+.write-title {
+  font-family: 'Crimson Pro', serif; font-style: italic;
+  font-size: 17px; color: var(--txt1); margin-bottom: 4px;
+  transition: color 0.15s; line-height: 1.3;
+}
+.write-summary {
+  font-family: 'Crimson Pro', serif;
+  font-size: 14px; color: var(--txt2); line-height: 1.5;
+}
+.wip-badge {
+  display: inline-block; margin-top: 6px;
+  font-family: 'VT323', monospace; font-size: 12px;
+  color: var(--tag-txt); background: var(--tag-bg);
+  border: 1px solid var(--btn-bdr); border-radius: 6px; padding: 1px 7px;
+}
+</style>

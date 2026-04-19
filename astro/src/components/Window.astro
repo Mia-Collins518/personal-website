@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  alt?: boolean;   // use darker win-alt background (for terminal-style panels)
+  class?: string;
+}
+const { title, alt = false, class: className = '' } = Astro.props;
+---
+ 
+<div class={`win ${alt ? 'alt-bg' : ''} ${className}`}>
+  <div class="win-chrome">
+    <span class="win-dot r" aria-hidden="true"></span>
+    <span class="win-dot y" aria-hidden="true"></span>
+    <span class="win-dot g" aria-hidden="true"></span>
+    <span class="win-title">{title}</span>
+  </div>
+  <div class="win-body">
+    <slot />
+  </div>
+</div>
