@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import SecretTerminal from '../components/SecretTerminal.astro';
  
 interface Props {
   title?: string;
@@ -141,10 +142,7 @@ const currentPath = Astro.url.pathname;
     setInterval(tick, 1000);
   </script>
 
-  <!-- add SecretTerminal (invisible until triggered) -->
-  astro---
-  import SecretTerminal from '../components/SecretTerminal.astro';
-  ---
   <SecretTerminal />
+
 </body>
 </html>
