@@ -40,7 +40,7 @@ const currentPath = Astro.url.pathname;
         <a href="/about"    class={`nav-link ${currentPath.startsWith('/about')    ? 'active' : ''}`}>~/about</a>
         <a href="/projects" class={`nav-link ${currentPath.startsWith('/projects') ? 'active' : ''}`}>~/projects</a>
         <a href="/writing"  class={`nav-link ${currentPath.startsWith('/writing')  ? 'active' : ''}`}>~/writing</a>
-        <a href="/research" class={`nav-link ${currentPath.startsWith('/research') ? 'active' : ''}`}>~/research</a>
+        <!-- <a href="/research" class={`nav-link ${currentPath.startsWith('/research') ? 'active' : ''}`}>~/research</a> -->
         <a href="/log"      class={`nav-link ${currentPath.startsWith('/log')      ? 'active' : ''}`}>~/log</a>
         <a href="/contact"  class={`nav-link ${currentPath.startsWith('/contact')  ? 'active' : ''}`}>~/contact</a>
       </div>
@@ -140,6 +140,11 @@ const currentPath = Astro.url.pathname;
     tick();
     setInterval(tick, 1000);
   </script>
+
+  <!-- add SecretTerminal (invisible until triggered) -->
+  astro---
+  import SecretTerminal from '../components/SecretTerminal.astro';
+  ---
+  <SecretTerminal />
 </body>
 </html>
- 
