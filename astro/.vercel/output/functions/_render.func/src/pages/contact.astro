@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Window from '../components/Window.astro';
+---
+ 
+<BaseLayout title="Contact" description="Get in touch with Mia Collins">
+  <div style="padding: 20px 18px; max-width: 540px;">
+    <Window title="contact.txt ♡">
+      <p class="section-label">► get in touch</p>
+      <div class="prose" style="margin-bottom: 16px;">
+        <p>I'm always happy to chat about alignment research, cool projects, or vibe coding disasters. Best way to reach me is email.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:msc2256@columbia.edu" class="contact-item">
+          <span class="contact-label">email</span>
+          <span class="contact-value">mc@columbia.edu →</span>
+        </a>
+        <a href="https://github.com/Mia-Collins518" class="contact-item" target="_blank" rel="noopener">
+          <span class="contact-label">github</span>
+          <span class="contact-value">github.com/miacollins →</span>
+        </a>
+        <a href="https://linkedin.com/in/miacollins" class="contact-item" target="_blank" rel="noopener">
+          <span class="contact-label">linkedin</span>
+          <span class="contact-value">linkedin.com/in/miacollins →</span>
+        </a>
+      </div>
+    </Window>
+  </div>
+</BaseLayout>
+ 
+<style>
+.contact-links { display: flex; flex-direction: column; gap: 4px; }
+.contact-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--bg2);
+  text-decoration: none;
+  transition: padding-left 0.15s;
+}
+.contact-item:last-child { border-bottom: none; }
+.contact-item:hover { padding-left: 5px; }
+.contact-item:hover .contact-value { color: var(--accent1); }
+.contact-label {
+  font-family: 'VT323', monospace; font-size: 14px;
+  color: var(--txt3); width: 70px; flex-shrink: 0; letter-spacing: 1px;
+}
+.contact-value {
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  color: var(--accent2); transition: color 0.15s;
+}
+</style>

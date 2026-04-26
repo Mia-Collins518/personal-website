@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Window from '../components/Window.astro';
+---
+ 
+<BaseLayout title="About" description="About Mia Collins — CS student, AI/ML, alignment">
+  <div class="about-grid">
+ 
+    <Window title="about.txt ♡">
+      <div class="prose">
+        <p>
+          Hi, I'm Mia — a CS student at Columbia interested in AI/ML, and specifically
+          in safety, security, and alignment research. My dream is to work on alignment
+          at a place like Anthropic someday, which means I spend a lot of time thinking
+          about how to make AI systems that are actually trustworthy.
+        </p>
+        <p>
+          I learn best by building things. This site is a living log of that process —
+          projects, papers, reflections, and the messy in-between. I document my use of
+          AI tools like Claude as part of the work itself, because I think how we interact
+          with AI is its own kind of skill worth developing in public.
+        </p>
+        <p>
+          Right now I'm researching deception in agentic AI systems and building a
+          Constitutional AI demo to understand that framework from the inside.
+          Previously I built EcoPulse, a full-stack ML app that tracks energy consumption
+          of the AI training lifecycle — the image preprocessing is still not great and
+          I am choosing to live with that.
+        </p>
+      </div>
+    </Window>
+ 
+    <div class="right-col">
+      <Window title="links/ ✦">
+        <p class="section-label">► find me</p>
+        <div class="links-list">
+          <a href="https://github.com/miacollins" class="ext-link" target="_blank" rel="noopener">github →</a>
+          <a href="https://linkedin.com/in/miacollins" class="ext-link" target="_blank" rel="noopener">linkedin →</a>
+          <a href="mailto:mc@columbia.edu" class="ext-link">email →</a>
+        </div>
+      </Window>
+ 
+      <Window title="stack.log" alt={true}>
+        <p class="section-label">► tools i use</p>
+        <div class="terminal">
+          <div class="term-line"><span class="term-prompt">languages</span> = <span class="term-value">["python", "typescript", "js"]</span></div>
+          <div class="term-line"><span class="term-prompt">ml</span>        = <span class="term-value">["pytorch", "numpy", "sklearn"]</span></div>
+          <div class="term-line"><span class="term-prompt">web</span>       = <span class="term-value">["astro", "next.js", "fastapi"]</span></div>
+          <div class="term-line"><span class="term-prompt">tools</span>     = <span class="term-value">["claude", "vscode", "vercel"]</span></div>
+          <div class="term-line"><span class="term-prompt">reading</span>   = <span class="term-value">["alignment forum", "arxiv"]</span></div>
+        </div>
+      </Window>
+    </div>
+ 
+  </div>
+</BaseLayout>
+ 
+<style>
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 14px;
+  padding: 20px 18px;
+  align-items: start;
+}
+.right-col { display: flex; flex-direction: column; gap: 14px; }
+ 
+.links-list { display: flex; flex-direction: column; gap: 6px; }
+.ext-link {
+  font-family: 'VT323', monospace; font-size: 15px;
+  color: var(--accent2); text-decoration: none; letter-spacing: 0.5px;
+}
+.ext-link:hover { color: var(--accent1); }
+ 
+@media (max-width: 640px) {
+  .about-grid { grid-template-columns: 1fr; }
+}
+</style>

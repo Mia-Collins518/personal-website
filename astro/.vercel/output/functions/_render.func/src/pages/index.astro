@@ -1,0 +1,215 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Window from '../components/Window.astro';
+---
+ 
+<BaseLayout title="Mia Collins" description="CS student · AI/ML · safety & alignment · building things to understand them">
+  <div class="page-grid">
+ 
+    <!-- Hero -->
+    <div class="win hero-win">
+      <div class="win-chrome">
+        <span class="win-dot r" aria-hidden="true"></span>
+        <span class="win-dot y" aria-hidden="true"></span>
+        <span class="win-dot g" aria-hidden="true"></span>
+        <span class="win-title">welcome.txt ♡</span>
+      </div>
+      <div class="hero-body">
+        <div class="avatar" aria-label="Moon emoji avatar">🌙</div>
+        <div class="hero-text">
+          <p class="hgreet">// hello, world</p>
+          <h1 class="hname">Mia Collins</h1>
+          <p class="htag"> Columbia University CS student · AI/ML · safety &amp; alignment · building things to understand them</p>
+          <div class="tags">
+            <span class="tag">#columbia</span>
+            <!-- <span class="tag">#pytorch</span> -->
+            <span class="tag">#alignment</span>
+            <span class="tag">#vibe-coded</span>
+            <span class="tag">#wip ✿</span>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Projects -->
+    <Window title="projects/ ✦">
+      <p class="section-label">► recent work</p>
+ 
+      <a href="/projects/ecopulse" class="proj-item">
+        <p class="proj-title">EcoPulse</p>
+        <p class="proj-desc">CNN digit classifier with FLOPs tracking &amp; full-stack deployment</p>
+        <p class="proj-meta">PyTorch · FastAPI · Next.js ── 2024 → ongoing</p>
+      </a>
+ 
+      <a href="/projects/cai-demo" class="proj-item">
+        <p class="proj-title">Constitutional AI Demo</p>
+        <p class="proj-desc">Interactive critique-revision cycle visualizer from the CAI paper</p>
+        <p class="proj-meta">Claude API ── in progress ✿</p>
+      </a>
+ 
+      <a href="/projects/this-site" class="proj-item">
+        <p class="proj-title">this website</p>
+        <p class="proj-desc">Astro + retro OS aesthetic, vibe coded &amp; documented as I go</p>
+        <p class="proj-meta">Astro · Vercel ── commit 1 of many ♡</p>
+      </a>
+ 
+      <a href="/projects" class="see-all">see all projects →</a>
+    </Window>
+ 
+    <!-- Writing -->
+    <Window title="writing/ ♡">
+      <p class="section-label">► essays &amp; papers</p>
+ 
+      <a href="/writing/constitutional-ai" class="write-item">
+        <p class="write-title">On Constitutional AI and Scalable Oversight</p>
+        <p class="write-meta">research paper ── 2025</p>
+      </a>
+ 
+      <a href="/writing/ai-deception" class="write-item">
+        <p class="write-title">Deception in Agentic AI Systems</p>
+        <p class="write-meta">in progress ── spring 2026</p>
+      </a>
+ 
+      <a href="/writing/ecopulse-reflections" class="write-item">
+        <p class="write-title">What EcoPulse taught me about ML deployment</p>
+        <p class="write-meta">project reflection ── 2024</p>
+      </a>
+ 
+      <a href="/writing" class="see-all">see all writing →</a>
+    </Window>
+ 
+    <!-- Status -->
+    <Window title="status.log">
+      <p class="section-label">► what i'm doing</p>
+ 
+      <div class="status-row">
+        <span class="status-dot active" aria-label="active"></span>
+        <div class="status-text"><b>reading</b> agentic AI deception paper (for research)</div>
+      </div>
+      <div class="status-row">
+        <span class="status-dot wip" aria-label="in progress"></span>
+        <div class="status-text"><b>building</b> this site — commit 1 ✦</div>
+      </div>
+      <div class="status-row">
+        <span class="status-dot wip" aria-label="in progress"></span>
+        <div class="status-text"><b>waiting on</b> Columbia × Anthropic rollout</div>
+      </div>
+      <div class="status-row">
+        <span class="status-dot done" aria-label="done"></span>
+        <div class="status-text"><b>shipped</b> EcoPulse (preprocessing still haunts me)</div>
+      </div>
+    </Window>
+ 
+    <!-- Terminal -->
+    <Window title="terminal" alt={true}>
+      <div class="terminal">
+        <div class="term-line"><span class="term-comment"># about this site</span></div>
+        <div class="term-line"><span class="term-prompt">goal</span>       = <span class="term-value">"document the process, not just the product"</span></div>
+        <div class="term-line"><span class="term-prompt">built_with</span> = <span class="term-value">["astro", "vibe-coding", "claude"]</span></div>
+        <div class="term-line"><span class="term-prompt">theme</span>      = <span class="term-value">"retro OS × pastel space"</span></div>
+        <div class="term-line"><span class="term-prompt">commits</span>    = <span class="term-value">1</span> <span class="term-comment"># turner has 5922. it's fine.</span></div>
+        <div class="term-line"><span class="term-prompt">status</span>     = <span class="term-value">"perpetually wip ✿"</span> <span class="term-cursor" aria-hidden="true"></span></div>
+      </div>
+    </Window>
+ 
+  </div>
+</BaseLayout>
+ 
+<style>
+/* Hero overrides — spans full width */
+.hero-win {
+  grid-column: 1 / -1;
+}
+.hero-body {
+  padding: 22px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.avatar {
+  width: 76px; height: 76px;
+  flex-shrink: 0;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  background: var(--win-bg2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 34px;
+  position: relative; overflow: hidden;
+}
+.avatar::after {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(180,80,220,0.06) 2px, rgba(180,80,220,0.06) 3px);
+}
+.hgreet {
+  font-family: 'VT323', monospace;
+  font-size: 12px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--txt3); margin-bottom: 3px;
+}
+.hname {
+  font-family: 'VT323', monospace;
+  font-size: 40px; color: var(--txt1); line-height: 1; margin-bottom: 5px;
+}
+.htag {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic; font-size: 16px;
+  color: var(--txt2); margin-bottom: 10px; line-height: 1.4;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 5px; }
+ 
+/* Project items */
+.proj-item {
+  display: block;
+  border-bottom: 1px solid var(--bg2);
+  padding: 9px 0;
+  text-decoration: none;
+  transition: padding-left 0.15s;
+}
+.proj-item:last-of-type { border-bottom: none; }
+.proj-item:hover { padding-left: 5px; }
+.proj-item:hover .proj-title { color: var(--accent1); }
+.proj-title { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; color: var(--txt1); margin-bottom: 2px; transition: color 0.15s; }
+.proj-desc  { font-family: 'Crimson Pro', serif; font-size: 14px; color: var(--txt2); line-height: 1.3; margin-bottom: 2px; }
+.proj-meta  { font-family: 'VT323', monospace; font-size: 12px; color: var(--txt4); }
+ 
+/* Writing items */
+.write-item {
+  display: block;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--bg2);
+  text-decoration: none;
+  transition: padding-left 0.15s;
+}
+.write-item:last-of-type { border-bottom: none; }
+.write-item:hover { padding-left: 5px; }
+.write-item:hover .write-title { color: var(--accent2); }
+.write-title { font-family: 'Crimson Pro', serif; font-style: italic; font-size: 15px; color: var(--txt1); margin-bottom: 2px; transition: color 0.15s; }
+.write-meta  { font-family: 'VT323', monospace; font-size: 12px; color: var(--txt3); }
+ 
+/* Status rows */
+.status-row {
+  display: flex; align-items: flex-start; gap: 9px;
+  padding: 7px 0; border-bottom: 1px solid var(--bg2);
+}
+.status-row:last-child { border-bottom: none; }
+.status-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; color: var(--txt2); line-height: 1.6;
+}
+.status-text b { display: block; color: var(--txt1); font-size: 10px; }
+ 
+/* See all link */
+.see-all {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: 'VT323', monospace;
+  font-size: 13px;
+  color: var(--accent2);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+.see-all:hover { color: var(--accent1); }
+ 
+@media (max-width: 640px) {
+  .hero-body { flex-direction: column; align-items: flex-start; }
+}
+</style>

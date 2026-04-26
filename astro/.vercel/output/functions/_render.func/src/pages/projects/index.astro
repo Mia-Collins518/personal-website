@@ -1,0 +1,101 @@
+---
+// Use relative dots (../../) and match the name to the tag below
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Window from "../../components/Window.astro";
+
+// When you add real project .md files, import them here with getCollection()
+const projects = [
+  {
+    slug: 'ecopulse',
+    title: 'EcoPulse',
+    desc: 'CNN digit classifier with FLOPs tracking & full-stack deployment',
+    stack: ['PyTorch', 'FastAPI', 'Next.js'],
+    status: 'ongoing',
+    year: '2024',
+    github: 'https://github.com/miacollins/ecopulse',
+  },
+  {
+    slug: 'cai-demo',
+    title: 'Constitutional AI Demo',
+    desc: 'Interactive critique-revision cycle visualizer from the CAI paper',
+    stack: ['Claude API'],
+    status: 'in progress',
+    year: '2026',
+    github: '',
+  },
+  {
+    slug: 'this-site',
+    title: 'this website',
+    desc: 'Astro + retro OS aesthetic, vibe coded & documented as I go',
+    stack: ['Astro', 'Vercel'],
+    status: 'ongoing',
+    year: '2026',
+    github: 'https://github.com/miacollins/personal-website',
+  },
+];
+---
+ 
+<BaseLayout title="Projects" description="Mia's coding projects">
+  <div style="padding: 20px 18px;">
+    <Window title="projects/ ✦">
+      <p class="section-label">► all work</p>
+ 
+      {projects.map((p) => (
+        <div class="proj-card">
+          <div class="proj-header">
+            <span class="proj-title">{p.title}</span>
+            <span class={`proj-status ${p.status === 'ongoing' || p.status === 'in progress' ? 'wip' : 'done'}`}>
+              {p.status}
+            </span>
+          </div>
+          <p class="proj-desc">{p.desc}</p>
+          <div class="proj-footer">
+            <span class="proj-meta">{p.stack.join(' · ')} ── {p.year}</span>
+            {p.github && (
+              <a href={p.github} class="proj-link" target="_blank" rel="noopener">
+                github →
+              </a>
+            )}
+          </div>
+        </div>
+      ))}
+    </Window>
+  </div>
+</BaseLayout>
+ 
+<style>
+.proj-card {
+  border-bottom: 1px solid var(--bg2);
+  padding: 12px 0;
+}
+.proj-card:last-child { border-bottom: none; }
+ 
+.proj-header {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 8px;
+  margin-bottom: 4px;
+}
+.proj-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px; font-weight: 700; color: var(--txt1);
+}
+.proj-status {
+  font-family: 'VT323', monospace; font-size: 12px;
+  border: 1px solid var(--btn-bdr);
+  border-radius: 6px; padding: 1px 7px;
+  color: var(--tag-txt); background: var(--tag-bg);
+}
+.proj-desc {
+  font-family: 'Crimson Pro', serif;
+  font-size: 15px; color: var(--txt2); line-height: 1.4; margin-bottom: 5px;
+}
+.proj-footer { display: flex; align-items: center; justify-content: space-between; }
+.proj-meta {
+  font-family: 'VT323', monospace; font-size: 12px; color: var(--txt4);
+}
+.proj-link {
+  font-family: 'VT323', monospace; font-size: 13px;
+  color: var(--accent2); text-decoration: none;
+}
+.proj-link:hover { color: var(--accent1); }
+</style>
